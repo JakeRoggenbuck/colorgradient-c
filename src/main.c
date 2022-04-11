@@ -9,9 +9,13 @@ typedef struct RGB {
 } RGB;
 
 typedef struct Point {
-    short x;
-    short y;
+    double x;
+    double y;
 } Point;
+
+int roughly_equal(double a, double b) {
+    return -0.0000000001 < a - b && a - b < 0.0000000001;
+}
 
 double find_slope(Point *first, Point *second) {
     // find Δy / Δx for two points
@@ -52,8 +56,7 @@ int test_trunc() {
 
 int test_fract() {
     double num = fract(3.141);
-	printf("%d", num);
-    return num == 0.141000;
+    return 0.141000 < num && num < 0.142000;
 }
 
 int test_find_slope() {
@@ -61,11 +64,11 @@ int test_find_slope() {
     Point p2_1 = {5, 6};
     double slope_1 = find_slope(&p1_1, &p2_1);
 
-    Point p1_2 = {8, 6};
-    Point p2_2 = {4, 3};
+    Point p1_2 = {4, 3};
+    Point p2_2 = {8, 6};
     double slope_2 = find_slope(&p1_2, &p2_2);
 
-    return slope_1 == 1 && slope_2 == 2;
+    return roughly_equal(1, slope_1) && roughly_equal(0.75, slope_2);
 }
 
 void test(char *name, int (*func)()) {
@@ -88,9 +91,6 @@ void tests() {
 }
 
 int main() {
-#if TEST
     tests();
-#endif
-
     return 0;
 }
