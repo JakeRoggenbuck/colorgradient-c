@@ -1,4 +1,6 @@
 # colorgradient-c
+Colorgradient learning project in C
+
 - Python version [colorgradient](https://github.com/JakeRoggenbuck/colorgradient)
 - Rust version [colorgradient-rs](https://github.com/JakeRoggenbuck/colorgradient-rs)
 - Julia version [colorgradient-julia](https://github.com/JakeRoggenbuck/colorgradient-julia)
